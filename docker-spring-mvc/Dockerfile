@@ -33,4 +33,4 @@ ADD . /usr/local/docker-spring-mvc
 RUN cd /usr/local/docker-spring-mvc && mvn clean install
 RUN cp /usr/local/docker-spring-mvc/target/docker-spring-mvc.war /opt/tomcat/webapps/docker-spring-mvc.war
 RUN cd opt/tomcat/bin
-RUN ./startup.sh
+CMD ./startup.sh

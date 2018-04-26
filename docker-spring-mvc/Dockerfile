@@ -20,7 +20,6 @@ RUN apt-get install -y maven
 
 # Get Tomcat
 # notice that i can add the same RUN command across multiple lines
-
 RUN wget --quiet --no-cookies http://apache.mirrors.tds.net/tomcat/tomcat-8/v8.5.30/bin/apache-tomcat-8.5.30.tar.gz -O /tmp/tomcat.tgz && \
 tar xzvf /tmp/tomcat.tgz -C /opt && \
 mv /opt/apache-tomcat-8.5.30 /opt/tomcat && \
@@ -32,5 +31,5 @@ rm -rf /opt/tomcat/webapps/ROOT
 ADD . /usr/local/docker-spring-mvc
 RUN cd /usr/local/docker-spring-mvc && mvn clean install
 RUN cp /usr/local/docker-spring-mvc/target/docker-spring-mvc.war /opt/tomcat/webapps/docker-spring-mvc.war
-RUN cd /opt/tomcat/bin 
-CMD ./startup.sh
+EXPOSE 8080
+CMD /opt/tomcat/bin/catalina.sh run
